@@ -12,3 +12,4 @@ added text in 11th line
 MERGE check1
 MERGE check2 -cause after main reverted the last merge, it was not taking merge again.
 MERGE check3
+MERGE AFTER REBASE
