@@ -1,2 +1,5 @@
 1st line
 2nd line
+public static void checkLineChange(){
+system.out.println("test message");
+}
