@@ -9,4 +9,3 @@ added line in branch
 added 2nd line in branch
 added text in 10th line
 added text in 11th line
-MERGE check1
