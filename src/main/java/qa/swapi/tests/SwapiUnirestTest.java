@@ -50,7 +50,7 @@ public class SwapiUnirestTest {
 				+ RandomSelection.randomPeopleSelection();
 		response = UnirestApiUtil.getResponse(urlForData);
 		assertEquals(response.getStatus(), Constants.statusCode, "Status code is NOT 200");
-		assertTrue(UnirestApiUtil.getFilmsOfTheCharacter(response), "Producer Name NOT matching.");
+		assertTrue(UnirestApiUtil.checkIfCharacterHasAtLeastOneFilm(response), "Producer Name NOT matching.");
 	}
 
 }

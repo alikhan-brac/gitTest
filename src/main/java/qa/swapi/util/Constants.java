@@ -20,6 +20,8 @@ public class Constants {
 	public static final String movieTitles = ".\\src\\test\\resources\\movieTitles.json";
 	public static final String testData = ".\\src\\test\\resources\\testData.json";
 	public static final String selectedMovie = ".\\src\\test\\resources\\selectedMovie.json";
+	public static final int maxPossibleSelection = 83;
+	public static final int minPossibleSelection = 1;
 
 	public static final List<FilmInfo> getMovieNameFromTestData(String fileName) {
 		ObjectMapper mapper = new ObjectMapper();

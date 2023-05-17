@@ -48,6 +48,6 @@ public class SwapiRestassuredTest {
 				+ RandomSelection.randomPeopleSelection();
 		response = RestassuredApiUtil.getResponse(urlForData);
 		assertEquals(response.getStatusCode(), Constants.statusCode, "Status code is NOT 200");
-		assertTrue(RestassuredApiUtil.getFilmsOfTheCharacter(response), "Producer Name NOT matching.");
+		assertTrue(RestassuredApiUtil.checkIfCharacterHasAtLeastOneFilm(response), "Producer Name NOT matching.");
 	}
 }

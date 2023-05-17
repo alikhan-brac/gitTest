@@ -29,10 +29,10 @@ public class RestassuredApiUtil {
 		return filmProducer;
 	}
 
-	public static boolean getFilmsOfTheCharacter(Response response) {
+	public static boolean checkIfCharacterHasAtLeastOneFilm(Response response) {
 		boolean atLeastOneFilm = false;
 		String filmNames = response.jsonPath().get("films").toString();
-		if (!(filmNames == null)) {
+		if (!filmNames.isEmpty()) {
 			atLeastOneFilm = true;
 		}
 		return atLeastOneFilm;

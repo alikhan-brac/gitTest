@@ -44,19 +44,12 @@ public class UnirestApiUtil {
 		return filmProducer;
 	}
 
-	public static boolean getFilmsOfTheCharacter(HttpResponse<JsonNode> response) {
+	public static boolean checkIfCharacterHasAtLeastOneFilm(HttpResponse<JsonNode> response) {
 		boolean atLeastOneFilm = false;
-		List<FilmInfo> filmTitle = new ArrayList<FilmInfo>();
 		JSONObject object = response.getBody().getObject();
-		JSONArray results = object.getJSONArray("films");
-		for (int i = 0; i < results.length(); i++) {
-			String filmName = results.getString(i);
-			filmTitle.add(new FilmInfo(filmName));
-		}
-		if (!(filmTitle == null)) {
+		if (object.getJSONArray("films").length() > 0) {
 			atLeastOneFilm = true;
 		}
 		return atLeastOneFilm;
 	}
-
 }
