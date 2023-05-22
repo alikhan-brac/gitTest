@@ -1,0 +1,53 @@
+package qa.swapi.util;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
+
+public class UnirestApiUtil {
+
+	public static HttpResponse<JsonNode> getResponse(String urlForData) {
+		HttpResponse<JsonNode> response = null;
+		try {
+			response = Unirest.get(urlForData).asJson();
+		} catch (UnirestException e) {
+			e.printStackTrace();
+		}
+		return response;
+	}
+
+	public static List<String> getMovieNameFromApi(HttpResponse<JsonNode> response) {
+		List<String> filmTitle = new ArrayList<String>();
+		JSONObject object = response.getBody().getObject();
+		JSONArray results = object.getJSONArray("results");
+		for (int i = 0; i < results.length(); i++) {
+			JSONObject node = results.getJSONObject(i);
+			String filmName = node.getString("title");
+			filmTitle.add(filmName);
+		}
+		return filmTitle;
+	}
+
+	public static String getProducerNameFromApi(HttpResponse<JsonNode> response) {
+		String filmProducer = null;
+		JSONObject object = response.getBody().getObject();
+		filmProducer = object.getString("producer");
+		return filmProducer;
+	}
+
+	public static boolean checkIfCharacterHasAtLeastOneFilm(HttpResponse<JsonNode> response) {
+		boolean atLeastOneFilm = false;
+		JSONObject object = response.getBody().getObject();
+		if (object.getJSONArray("films").length() > 0) {
+			atLeastOneFilm = true;
+		}
+		return atLeastOneFilm;
+	}
+}
