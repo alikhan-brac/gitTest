@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="nextcloud testing" verbose="1">
+    <test name="nextcloud app test" parallel="none">
+        <classes>
+            <class name="qa.nextcloud.tests.NextCloudAppTest"/>
+        </classes>
+    </test>
+</suite>
