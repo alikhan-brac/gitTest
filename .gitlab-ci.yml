@@ -1,22 +1,28 @@
 stages:
-    - build
-    - test
+  - build
+  - test
 
 default:
-    tags:
-        - gitlab-runner
-    image: alpine
+  tags:
+    - third-runner
+  image: alpine
 
 create-file:
-    stage: build
-    script:
-        - echo "creating file"
-        - echo "this a test file added to artifact" > art/art.txt
-    artifact:
-        - art/art.txt
-        - expires : 1 hour
-        
+  stage: build
+  script:
+    - echo "started creating file"
+    - mkdir -p b
+    - echo "this is to test artifact" > b/testfile.txt
+  artifacts:
+    paths:
+      - b/testfile.txt
+    expire_in: 1 hour
+
 test-file:
-    stage: test
-    script: echo "checking file if exists"
-    script: cat art/art.txt
+  stage: test
+  dependencies:
+    - create-file
+  script:
+    - echo "checking artifact"
+    - test -f b/testfile.txt
+    - cat b/testfile.txt
