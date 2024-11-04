@@ -1,5 +1,4 @@
 stages:
-  - sync
   - build
   - test
 
@@ -8,21 +7,6 @@ default:
     - third-runner
   image: alpine
   
-sync_with_github:
-  stage: sync
-  script:
-    - echo "Cloning GitHub repository..."
-    - git clone https://github.com/alikhan-brac/gitTest.git
-    - cd gitTest
-    - echo "Pulling latest changes from GitHub..."
-    - git pull origin main  # Change 'main' to your default branch
-    - echo "Pushing changes to GitLab..."
-    - git remote add gitlab https://gitlab.com/testgroup29313144/gitTest.git
-    - git push https://alikhan.brac:${GITHUB_TOKEN}@gitlab.com/testgroup29313144/gitTest.git main
-    # Change 'main' to your default branch
-  only:
-    - main  # Change to the branch you want to sync
-
 create-file:
   stage: build
   script:
